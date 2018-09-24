@@ -1,0 +1,32 @@
+<!-- <p>
+  {{loadStatus$ | async}}
+</p>
+
+<p>
+  <button (click)="starLoad()">开始加载</button>
+  <button (click)="endLoad()">结束加载</button>
+</p>
+<p>
+  <button nz-button (click)="showModal()" nzType="primary">显示模态框</button>
+
+</p>
+<p>
+  <button nz-button (click)="loadStudentList()" nzType="default">加载学生列表</button>
+</p> -->
+<!-- 加载 -->
+<div class="spinner" *ngIf="loadStatus$ | async">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+</div>
+
+<!-- 模态框 -->
+<nz-modal [nzStyle]="{ top: '20px' }" [nzVisible]="showModal$ | async" nzTitle="{{(modalContent$ | async).title}}" (nzOnCancel)="onModalClose(false)" (nzOnOk)="onModalClose(true)">
+  <p>{{(modalContent$ | async).content}}</p>
+</nz-modal>
+
+<div nz-row>
+  <div nz-col nzSpan="20" nzOffset="2">
+    <router-outlet></router-outlet>
+  </div>
+</div>
