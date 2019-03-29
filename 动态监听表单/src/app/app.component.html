@@ -1,0 +1,30 @@
+
+<!-- <router-outlet></router-outlet> -->
+
+<div [formGroup]="userGroup">
+    <div>
+        <span>Name</span>
+        <input type="text" formControlName="name">
+    </div>
+    <div>
+        <span>Age</span>
+        <input type="text" formControlName="age">
+    </div>
+    <div formGroupName="address">
+        <span>Country</span>
+        <input type="text" formControlName="country">
+    </div>
+    <div formGroupName="address">
+        <span>City</span>
+        <input type="text" formControlName="city">
+    </div>
+    <div formArrayName="hobbies">
+        <span>Hobbies</span>
+        <ng-container *ngFor="let h of hobbies.controls; let i = index">
+            <input type="checkbox" [formControl]="h" [attr.id]="'hobby'+ i">
+            <label [attr.for]="'hobby'+ i">{{'hobby'+ i}}</label>
+        </ng-container>
+    </div>
+</div>
+<hr>
+<div [innerHtml]="userGroup.value | json"></div>
